@@ -66,6 +66,10 @@ var Message = function(headers)
             this.attach(headers[header]);
          }
       }
+      else if(header == 'subject')
+      {
+         this.header[header.toLowerCase()] = '=?UTF-8?B?' + new Buffer(headers[header], 'utf8').toString('base64') + '?=';
+      }
       else
       {
          // allow any headers the user wants to set??
