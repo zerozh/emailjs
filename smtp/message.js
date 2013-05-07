@@ -81,7 +81,6 @@ var Message = function(headers)
 
 Message.prototype = 
 {
-
    attach: function(options)
    {
       /* 
@@ -405,26 +404,11 @@ var MessageStream = function(message)
    {
       var data = [];
 
-      data = data.concat(["Content-Type:", message.content, CRLF, "Content-Transfer-Encoding: BASE64", CRLF]);
+      data = data.concat(["Content-Type:", message.content, CRLF, "Content-Transfer-Encoding: 7bit", CRLF]);
       data = data.concat(["Content-Disposition: inline", CRLF, CRLF]);
-      var txt = base64_encode(new Buffer(message.text).toString('base64'));
-      data = data.concat([txt || "", CRLF, CRLF]);
+      data = data.concat([message.text || "", CRLF, CRLF]);
 
       output(data.join(''));
-   };
-
-   var base64_encode = function(data)
-   {
-      var loops   = Math.ceil(data.length / MIMECHUNK);
-      var loop    = 0;
-      var opt = '';
-      while(loop < loops)
-      {
-        opt+= data.substring(MIMECHUNK * loop, MIMECHUNK * (loop + 1)) + CRLF;
-        loop++;
-      }
-
-      return opt;
    };
 
    var output_alternative = function(message, callback)
