@@ -404,11 +404,11 @@ var MessageStream = function(message)
    {
       var data = [];
 
-      data = data.concat(["Content-Type:", message.content, CRLF, "Content-Transfer-Encoding: 7bit", CRLF]);
+      data = data.concat(["Content-Type:", message.content, CRLF, "Content-Transfer-Encoding: BASE64", CRLF]);
       data = data.concat(["Content-Disposition: inline", CRLF, CRLF]);
-      data = data.concat([message.text || "", CRLF, CRLF]);
 
       output(data.join(''));
+      output_base64(new Buffer(message.text).toString('base64'));
    };
 
    var output_alternative = function(message, callback)
