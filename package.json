@@ -1,14 +1,9 @@
 {
    "name": "emailjs",
    "description": "send text/html emails and attachments (files, streams and strings) from node.js to any smtp server",
-   "version": "0.3.4",
+   "version": "0.3.5",
    "author": "eleith",
    "contributors":["izuzak", "Hiverness", "mscdex", "jimmybergman"],
-   "repository":
-   {
-       "type": "git",
-       "url": "http://github.com/eleith/emailjs.git"
-   },
    "dependencies":
    {
     "moment" : "= 1.7.0"
